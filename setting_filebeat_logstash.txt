@@ -1,0 +1,20 @@
+
+
+
+# first go to filebeat yml file and enable fields and add like this way 
+fields:
+  env: 8bitsystem
+  appname: jaipur
+  
+  
+#Setting in logstash configuration file change only output section whatever fields you have create you just pass name with fields
+
+
+output {
+  stdout {codec => json}
+  
+	  elasticsearch {
+		hosts => "localhost:9200"
+		index => "%{[fields][env]}"
+	  }
+}
